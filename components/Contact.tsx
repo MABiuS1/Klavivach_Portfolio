@@ -1,5 +1,4 @@
 "use client"
-
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle, Loader, Mail, MessageSquare, Github, Linkedin, Instagram } from 'lucide-react';
 
@@ -41,26 +40,28 @@ const CustomAlert: React.FC<CustomAlertProps> = ({ type, message, onClose }) => 
   </div>
 );
 
-
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formState, setFormState] = useState({ email: '', message: '' });
-  const [alert, setAlert] = useState({ show: false, type: '', message: '' });
+  const [alert, setAlert] = useState<{ show: boolean; type: 'success' | 'error'; message: string }>({
+    show: false, 
+    type: 'success', // Default type
+    message: ''
+  });
 
   const validateEmail = (email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
-  
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    
+  
     // Validate email
     if (!validateEmail(formState.email)) {
       setAlert({
@@ -70,16 +71,16 @@ const Contact = () => {
       });
       return;
     }
-
+  
     setIsSubmitting(true);
-    
+  
     try {
       const response = await fetch("https://formspree.io/f/movjlpde", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-
+  
       if (response.ok) {
         setAlert({
           show: true,

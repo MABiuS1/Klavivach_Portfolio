@@ -48,7 +48,7 @@ const projects = [
 ];
 
 const Projects = () => {
-  const scrollRef = useRef(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);  // Fix here
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -60,7 +60,7 @@ const Projects = () => {
     }
   };
 
-  const scroll = (direction) => {
+  const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const scrollAmount = direction === 'left' ? -340 : 340;
       scrollRef.current.scrollBy({
@@ -69,6 +69,7 @@ const Projects = () => {
       });
     }
   };
+
 
   return (
     <section className="py-20 px-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800" id="projects">
