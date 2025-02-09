@@ -47,10 +47,11 @@ const Contact = () => {
   const [formState, setFormState] = useState({ email: '', message: '' });
   const [alert, setAlert] = useState({ show: false, type: '', message: '' });
 
-  const validateEmail = (email) => {
+  const validateEmail = (email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
   };
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
