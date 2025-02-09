@@ -3,8 +3,15 @@
 import React, { useState } from 'react';
 import { AlertCircle, CheckCircle, Loader, Mail, MessageSquare, Github, Linkedin, Instagram } from 'lucide-react';
 
-// Custom Alert Component
-const CustomAlert = ({ type, message, onClose }) => (
+// Define the prop types for CustomAlert
+interface CustomAlertProps {
+  type: 'success' | 'error';
+  message: string;
+  onClose: () => void;
+}
+
+// Use the types in your component
+const CustomAlert: React.FC<CustomAlertProps> = ({ type, message, onClose }) => (
   <div className={`p-4 rounded-lg mb-6 flex items-start space-x-3 ${
     type === 'success' 
       ? 'bg-green-50 text-green-800 dark:bg-green-900/20 dark:text-green-200' 
@@ -33,6 +40,7 @@ const CustomAlert = ({ type, message, onClose }) => (
     </button>
   </div>
 );
+
 
 const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -81,6 +89,7 @@ const Contact = () => {
       } else {
         throw new Error('Failed to send message');
       }
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setAlert({
         show: true,

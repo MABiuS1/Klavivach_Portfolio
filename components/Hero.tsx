@@ -52,7 +52,7 @@ const Hero = () => {
           transition={{ delay: 0.3, duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-indigo-800 to-indigo-600 dark:from-white dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent">
-            Hello! I'm Klavivach
+            Hello! I&apos;m Klavivach
           </h1>
 
           <h2 className="text-2xl md:text-3xl font-semibold text-indigo-600 dark:text-indigo-400">
@@ -60,7 +60,7 @@ const Hero = () => {
           </h2>
 
           <p className="mt-6 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-            I'm a Full Stack Software Engineer with experience in Website,
+            I&apos;m a Full Stack Software Engineer with experience in Website,
             Mobile, and Software development. Passionate about creating elegant
             solutions and delivering exceptional user experiences.
           </p>
