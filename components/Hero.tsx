@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Twitter } from "lucide-react";
+import { ArrowDown, Github, Linkedin, Instagram } from "lucide-react";
 
 const Hero = () => {
   const socialLinks = [
-    { icon: Github, href: "#", label: "GitHub" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
-    { icon: Twitter, href: "#", label: "Twitter" },
+    { icon: Github, href: "https://github.com/MABiuS1", label: "GitHub" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/klavivach/", label: "LinkedIn" },
+    { icon: Instagram, href: "https://www.instagram.com/k.1987_jp/", label: "Twitter" },
   ];
 
   return (
