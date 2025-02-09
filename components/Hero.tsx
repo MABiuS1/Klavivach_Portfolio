@@ -110,7 +110,7 @@ const Hero = () => {
           </a>
 
           <a
-            href="asset/Klavivach CV.pdf" 
+            href="/Klavivach CV.pdf" 
             download
             className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
           >
