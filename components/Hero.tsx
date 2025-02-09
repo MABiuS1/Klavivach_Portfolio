@@ -6,8 +6,16 @@ import { ArrowDown, Github, Linkedin, Instagram } from "lucide-react";
 const Hero = () => {
   const socialLinks = [
     { icon: Github, href: "https://github.com/MABiuS1", label: "GitHub" },
-    { icon: Linkedin, href: "https://www.linkedin.com/in/klavivach/", label: "LinkedIn" },
-    { icon: Instagram, href: "https://www.instagram.com/k.1987_jp/", label: "Twitter" },
+    {
+      icon: Linkedin,
+      href: "https://www.linkedin.com/in/klavivach/",
+      label: "LinkedIn",
+    },
+    {
+      icon: Instagram,
+      href: "https://www.instagram.com/k.1987_jp/",
+      label: "Twitter",
+    },
   ];
 
   return (
@@ -110,7 +118,7 @@ const Hero = () => {
           </a>
 
           <a
-            href="/Klavivach CV.pdf" 
+            href="/KlavivachCV.pdf"
             download
             className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
           >
