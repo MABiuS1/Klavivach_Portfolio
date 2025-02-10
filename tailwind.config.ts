@@ -7,7 +7,7 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./app/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: ["class", "class"],
+  darkMode: ["class"],
   theme: {
   	extend: {
   		borderRadius: {
