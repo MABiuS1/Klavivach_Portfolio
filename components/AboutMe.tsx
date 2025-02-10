@@ -143,7 +143,7 @@ const AboutMe = () => {
             <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
               <Laptop className="w-8 h-8 text-indigo-600 dark:text-indigo-400 mx-auto mb-4" />
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
-                Full Stack Expertise
+              Full Stack Skills
               </h4>
               <p className="text-gray-600 dark:text-gray-300">
                 End-to-end application development with modern web technologies
