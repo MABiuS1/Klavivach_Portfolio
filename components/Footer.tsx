@@ -14,7 +14,7 @@ const Footer = () => {
 
   const footerSections = {
     contact: [
-      { icon: Mail, text: 'contact@klavivach.com', href: 'mailto:contact@klavivach.com' },
+      { icon: Mail, text: 'klavivach1@gmail.com', href: 'mailto:klavivach1@gmail.com' },
       { icon: MapPin, text: 'Bangkok, Thailand' },
       { icon: Phone, text: '+66 0918461046', href: 'tel:+660918461046' }
     ],
