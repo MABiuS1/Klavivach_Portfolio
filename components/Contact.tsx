@@ -1,15 +1,15 @@
 "use client"
-import React, { useState } from 'react';
-import { AlertCircle, CheckCircle, Loader, Mail, MessageSquare, Github, Linkedin, Instagram } from 'lucide-react';
 
-// Define the prop types for CustomAlert
+import React, { useState } from 'react';
+import { AlertCircle, CheckCircle, Loader, Mail, MessageSquare, Github, Linkedin, Instagram, Calendar } from 'lucide-react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 interface CustomAlertProps {
   type: 'success' | 'error';
   message: string;
   onClose: () => void;
 }
 
-// Use the types in your component
 const CustomAlert: React.FC<CustomAlertProps> = ({ type, message, onClose }) => (
   <div className={`p-4 rounded-lg mb-6 flex items-start space-x-3 ${
     type === 'success' 
@@ -17,21 +17,13 @@ const CustomAlert: React.FC<CustomAlertProps> = ({ type, message, onClose }) => 
       : 'bg-red-50 text-red-800 dark:bg-red-900/20 dark:text-red-200'
   }`}>
     <div className="flex-shrink-0">
-      {type === 'success' 
-        ? <CheckCircle className="h-5 w-5" /> 
-        : <AlertCircle className="h-5 w-5" />
-      }
+      {type === 'success' ? <CheckCircle className="h-5 w-5" /> : <AlertCircle className="h-5 w-5" />}
     </div>
     <div className="flex-1">
-      <h3 className="font-medium">
-        {type === 'success' ? 'Success' : 'Error'}
-      </h3>
+      <h3 className="font-medium">{type === 'success' ? 'Success' : 'Error'}</h3>
       <p className="text-sm mt-1">{message}</p>
     </div>
-    <button 
-      onClick={onClose}
-      className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
-    >
+    <button onClick={onClose} className="flex-shrink-0 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
       <span className="sr-only">Close</span>
       <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
         <path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -44,8 +36,8 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formState, setFormState] = useState({ email: '', message: '' });
   const [alert, setAlert] = useState<{ show: boolean; type: 'success' | 'error'; message: string }>({
-    show: false, 
-    type: 'success', // Default type
+    show: false,
+    type: 'success',
     message: ''
   });
 
@@ -61,8 +53,7 @@ const Contact = () => {
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-  
-    // Validate email
+    
     if (!validateEmail(formState.email)) {
       setAlert({
         show: true,
@@ -71,16 +62,16 @@ const Contact = () => {
       });
       return;
     }
-  
+    
     setIsSubmitting(true);
-  
+    
     try {
       const response = await fetch("https://formspree.io/f/movjlpde", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formState),
       });
-  
+      
       if (response.ok) {
         setAlert({
           show: true,
@@ -91,7 +82,6 @@ const Contact = () => {
       } else {
         throw new Error('Failed to send message');
       }
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       setAlert({
         show: true,
@@ -111,74 +101,99 @@ const Contact = () => {
 
   return (
     <section className="py-20 px-4 bg-white dark:bg-gray-800" id="contact">
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">
           Get in Touch
         </h2>
-        
-        {alert.show && (
-          <CustomAlert 
-            type={alert.type} 
-            message={alert.message} 
-            onClose={() => setAlert({ ...alert, show: false })}
-          />
-        )}
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="relative">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Email Address
-            </label>
-            <div className="relative">
-              <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-              <input
-                id="email"
-                type="email"
-                name="email"
-                value={formState.email}
-                onChange={handleInputChange}
-                placeholder="you@example.com"
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                required
-                aria-label="Email Address"
+        <Tabs defaultValue="message" className="w-full">
+          <TabsList className="grid w-full grid-cols-2 mb-8">
+            <TabsTrigger value="message" className="flex items-center gap-2">
+              <MessageSquare className="h-4 w-4" />
+              Send Message
+            </TabsTrigger>
+            <TabsTrigger value="schedule" className="flex items-center gap-2">
+              <Calendar className="h-4 w-4" />
+              Schedule Meeting
+            </TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="message">
+            {alert.show && (
+              <CustomAlert 
+                type={alert.type} 
+                message={alert.message} 
+                onClose={() => setAlert({ ...alert, show: false })}
               />
-            </div>
-          </div>
-
-          <div className="relative">
-            <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Message
-            </label>
-            <div className="relative">
-              <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
-              <textarea
-                id="message"
-                name="message"
-                value={formState.message}
-                onChange={handleInputChange}
-                placeholder="Your message here..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                required
-                aria-label="Message"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader className="animate-spin h-5 w-5" />
-                <span>Sending...</span>
-              </>
-            ) : (
-              <span>Send Message</span>
             )}
-          </button>
-        </form>
+
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="relative">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={formState.email}
+                    onChange={handleInputChange}
+                    placeholder="you@example.com"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="relative">
+                <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Message
+                </label>
+                <div className="relative">
+                  <MessageSquare className="absolute left-3 top-3 h-5 w-5 text-gray-400" />
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formState.message}
+                    onChange={handleInputChange}
+                    placeholder="Your message here..."
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg h-32 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    required
+                  />
+                </div>
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-indigo-600 text-white py-3 px-6 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center space-x-2"
+              >
+                {isSubmitting ? (
+                  <>
+                    <Loader className="animate-spin h-5 w-5" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <span>Send Message</span>
+                )}
+              </button>
+            </form>
+          </TabsContent>
+
+          <TabsContent value="schedule" className="h-[600px]">
+            <div
+              className="calendly-inline-widget w-full h-full"
+              data-url="https://calendly.com/klavivach1"
+            />
+            <script
+              type="text/javascript"
+              src="https://assets.calendly.com/assets/external/widget.js"
+              async
+            />
+          </TabsContent>
+        </Tabs>
 
         <div className="flex justify-center mt-10 space-x-6">
           {socialLinks.map(({ href, icon: Icon, label }) => (
