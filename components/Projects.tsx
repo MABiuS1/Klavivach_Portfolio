@@ -12,7 +12,7 @@ const projects = [
       "This is my college project booking system built using Go and Next.js using Microservices.",
     link: "https://github.com/6531503042/Sport-Complex",
     demoLink: null,
-    stack: ["Go", "Next.js", "Microservices"],
+    stack: ["Go", "Next.js", "Microservices", "GRPC"],
   },
   {
     src: "/Deap.webp",
@@ -48,7 +48,7 @@ const projects = [
       "Yakkaw is a modern mobile application designed to monitor air pollution issues in Thailand, starting from Chiang Rai and expanding to northern provinces. It provides real-time PM2.5 air quality data, interactive maps, and health-based recommendations.",
     link: "https://github.com/franz1us/Yakkaw-Mobile-Application",
     demoLink: null,
-    stack: ["ReactNative", "Vue", "Nest", "MongoDB"],
+    stack: ["ReactNative", "SQLite ",],
   },
 ];
 
