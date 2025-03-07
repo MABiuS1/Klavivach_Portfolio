@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, Github, Linkedin, Instagram } from "lucide-react";
 
 const Hero = () => {
+  const [showModal, setShowModal] = useState(false);
+
   const socialLinks = [
     { icon: Github, href: "https://github.com/MABiuS1", label: "GitHub" },
     {
@@ -17,6 +19,13 @@ const Hero = () => {
       label: "Twitter",
     },
   ];
+
+  const openModal = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const closeModal = () => setShowModal(false);
 
   return (
     <section
@@ -117,14 +126,60 @@ const Hero = () => {
             Contact Me
           </a>
 
+          {/* Preview Resume */}
           <a
             href="/KlavivachCV.pdf"
-            download
+            onClick={openModal}
             className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
           >
-            Download Resume
+            Preview Resume
           </a>
         </motion.div>
+
+        {/* Modal สำหรับ Preview Resume */}
+        {showModal && (
+          <div className="fixed inset-0 z-50 bg-black bg-opacity-60 flex items-center justify-center p-4">
+            {/* Container หลักของ Modal */}
+            <div className="relative w-full max-w-4xl bg-white dark:bg-gray-900 rounded-md shadow-lg">
+              {/* Top bar */}
+              <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                {/* Zoom หรือข้อความแสดงผล */}
+                <div className="flex items-center space-x-2">
+                  <h3 className="text-xl font-semibold">Preview Resume</h3>
+                  <span className="text-gray-500 dark:text-gray-400 text-sm">
+                    (PDF)
+                  </span>
+                </div>
+
+                {/* ปุ่ม Download + ปุ่ม Close */}
+                <div className="flex items-center space-x-4">
+                  <a
+                    href="/KlavivachCV.pdf"
+                    download
+                    className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
+                  >
+                    Download PDF
+                  </a>
+                  <button
+                    onClick={closeModal}
+                    className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-gray-200 text-xl font-bold"
+                  >
+                    &times;
+                  </button>
+                </div>
+              </div>
+
+              {/* ส่วนแสดง PDF */}
+              <div className="h-[80vh] overflow-auto p-4">
+                <iframe
+                  src="/KlavivachCV.pdf"
+                  title="Resume Preview"
+                  className="w-full h-full border border-gray-300 rounded"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Scroll Indicator */}
         <motion.div
