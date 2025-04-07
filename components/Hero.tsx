@@ -37,6 +37,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-grid-pattern opacity-5" />
         <div className="absolute top-10 left-10 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
         <div className="absolute top-0 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
+        <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-4000" />
       </div>
 
       {/* Content container */}
@@ -50,7 +51,7 @@ const Hero = () => {
           <img
             src="/Profile.jpeg"
             alt="Profile Picture"
-            className="w-48 h-48 rounded-full border-4 border-indigo-500 shadow-xl object-cover hover:border-indigo-400 transition-all duration-300 ring-4 ring-indigo-500/20"
+            className="w-48 h-48 rounded-full border-4 border-indigo-500 shadow-xl object-cover hover:border-indigo-400 transition-all duration-300 ring-4 ring-indigo-500/20 hover:scale-105 transform"
           />
           <motion.div
             className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-indigo-500 to-blue-500 text-white px-4 py-1 rounded-full text-sm font-medium shadow-lg"
@@ -68,11 +69,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-indigo-800 to-indigo-600 dark:from-white dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-gray-900 via-indigo-800 to-indigo-600 dark:from-white dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent hover:scale-105 transform transition-all duration-300">
             Hello! I&apos;m Klavivach
           </h1>
 
-          <h2 className="text-2xl md:text-3xl font-semibold text-indigo-600 dark:text-indigo-400">
+          <h2 className="text-2xl md:text-4xl font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors duration-300">
             Full-Stack Developer
           </h2>
 
@@ -114,14 +115,14 @@ const Hero = () => {
         >
           <a
             href="#projects"
-            className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:from-indigo-500 hover:to-blue-400"
+            className="px-8 py-3 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 hover:from-indigo-500 hover:to-blue-400"
           >
             View My Projects
           </a>
 
           <a
             href="#contact"
-            className="px-8 py-3 rounded-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-700"
+            className="px-8 py-3 rounded-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 hover:bg-gray-50 dark:hover:bg-gray-700"
           >
             Contact Me
           </a>
@@ -130,7 +131,7 @@ const Hero = () => {
           <a
             href="/KlavivachCV.pdf"
             onClick={openModal}
-            className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
+            className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-gradient-to-r from-green-500 to-emerald-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 hover:from-green-400 hover:to-emerald-400"
           >
             Preview Resume
           </a>
@@ -225,6 +226,9 @@ const Hero = () => {
         }
         .animation-delay-2000 {
           animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+          animation-delay: 4s;
         }
       `}</style>
     </section>

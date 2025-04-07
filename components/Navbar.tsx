@@ -59,14 +59,14 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 
         ${scrolled
-          ? "bg-gradient-to-r from-white via-white to-indigo-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 shadow-lg shadow-indigo-100/50 dark:shadow-gray-900/50 backdrop-blur-md py-2"
-          : "bg-gradient-to-r from-white via-white to-indigo-50 dark:from-gray-800 dark:via-gray-800 dark:to-gray-900 shadow-md shadow-indigo-100/30 dark:shadow-gray-900/30 py-4"
+          ? "bg-gradient-to-r from-white/80 via-white/90 to-indigo-50/80 dark:from-gray-800/80 dark:via-gray-800/90 dark:to-gray-900/80 shadow-lg shadow-indigo-100/50 dark:shadow-gray-900/50 backdrop-blur-md py-2"
+          : "bg-gradient-to-r from-white/50 via-white/70 to-indigo-50/50 dark:from-gray-800/50 dark:via-gray-800/70 dark:to-gray-900/50 shadow-md shadow-indigo-100/30 dark:shadow-gray-900/30 py-4"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo/Title */}
-          <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 to-indigo-600 dark:from-white dark:to-indigo-400 bg-clip-text text-transparent hover:to-indigo-500 dark:hover:to-indigo-300 transition-all duration-300">
+          <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-indigo-600 to-indigo-800 dark:from-white dark:via-indigo-400 dark:to-indigo-600 bg-clip-text text-transparent hover:scale-105 transform transition-all duration-300">
             My Portfolio
           </h1>
 
@@ -80,17 +80,18 @@ const Navbar = () => {
                   e.preventDefault();
                   handleNavClick(link.href);
                 }}
-                className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium relative group"
+                className="text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 font-medium relative group"
               >
                 {link.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 to-indigo-400 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-indigo-600 via-indigo-500 to-indigo-400 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-indigo-600/20 via-indigo-500/20 to-indigo-400/20 group-hover:opacity-0 transition-all duration-300"></span>
               </a>
             ))}
 
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg transition-all duration-300"
+              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg hover:scale-110 transform transition-all duration-300"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -105,7 +106,7 @@ const Navbar = () => {
           <div className="md:hidden flex items-center space-x-2">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg transition-all duration-300"
+              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg hover:scale-110 transform transition-all duration-300"
               aria-label="Toggle theme"
             >
               {theme === "dark" ? (
@@ -116,7 +117,7 @@ const Navbar = () => {
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg transition-all duration-300"
+              className="p-2 rounded-full bg-gradient-to-r from-gray-100 to-white dark:from-gray-700 dark:to-gray-800 shadow-md hover:shadow-lg hover:scale-110 transform transition-all duration-300"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -131,7 +132,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-gradient-to-b from-white to-indigo-50/50 dark:from-gray-800 dark:to-gray-900/50 shadow-lg transition-all duration-300 ease-in-out ${
+        className={`md:hidden absolute top-full left-0 w-full bg-gradient-to-b from-white/90 to-indigo-50/90 dark:from-gray-800/90 dark:to-gray-900/90 shadow-lg backdrop-blur-md transition-all duration-300 ease-in-out ${
           isOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2 pointer-events-none"
         }`}
       >
@@ -144,7 +145,7 @@ const Navbar = () => {
                 e.preventDefault();
                 handleNavClick(link.href);
               }}
-              className="block text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors font-medium"
+              className="block text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-all duration-300 font-medium hover:translate-x-2 transform"
             >
               {link.name}
             </a>

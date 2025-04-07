@@ -77,23 +77,36 @@ const Projects = () => {
 
   return (
     <section
-      className="py-20 px-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800"
+      className="py-20 px-4 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 relative overflow-hidden"
       id="projects"
     >
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-8">
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+        <div className="absolute top-10 right-10 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob" />
+        <div className="absolute bottom-0 left-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000" />
+      </div>
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <motion.h2 
+          className="text-4xl md:text-5xl font-bold text-center bg-gradient-to-r from-gray-900 via-indigo-800 to-indigo-600 dark:from-white dark:via-indigo-400 dark:to-blue-400 bg-clip-text text-transparent mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
           Featured Projects
-        </h2>
+        </motion.h2>
 
         <div className="relative mt-8">
           {/* Navigation Buttons */}
           <button
             onClick={() => scroll("left")}
             disabled={!canScrollLeft}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all transform
+            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all transform hover:scale-110
               ${
                 canScrollLeft
-                  ? "bg-indigo-500 hover:bg-indigo-600 text-white translate-x-0 opacity-100"
+                  ? "bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white translate-x-0 opacity-100"
                   : "bg-gray-300 dark:bg-gray-700 text-gray-500 -translate-x-full opacity-0"
               }`}
             aria-label="Scroll left"
@@ -104,10 +117,10 @@ const Projects = () => {
           <button
             onClick={() => scroll("right")}
             disabled={!canScrollRight}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all transform
+            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 p-3 rounded-full shadow-lg transition-all transform hover:scale-110
               ${
                 canScrollRight
-                  ? "bg-indigo-500 hover:bg-indigo-600 text-white translate-x-0 opacity-100"
+                  ? "bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white translate-x-0 opacity-100"
                   : "bg-gray-300 dark:bg-gray-700 text-gray-500 translate-x-full opacity-0"
               }`}
             aria-label="Scroll right"
@@ -124,7 +137,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div
                 key={index}
-                className="w-full max-w-sm bg-white dark:bg-gray-800 rounded-xl shadow-lg flex-shrink-0 overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="w-full max-w-sm bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-xl shadow-lg flex-shrink-0 overflow-hidden hover:shadow-xl transition-all duration-300 hover:scale-105"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -132,20 +145,20 @@ const Projects = () => {
               >
                 {/* Project Image Container */}
                 <div
-                  className="relative w-full"
+                  className="relative w-full overflow-hidden"
                   style={{ aspectRatio: "16/9" }}
                 >
                   <img
                     src={project.src}
                     alt={`Screenshot of ${project.title}`}
-                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-300"
+                    className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
                 {/* Content Container */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300">
                     {project.title}
                   </h3>
 
@@ -158,7 +171,7 @@ const Projects = () => {
                     {project.stack.map((tech, idx) => (
                       <span
                         key={idx}
-                        className="px-3 py-1 text-xs font-medium bg-indigo-50 text-indigo-600 dark:bg-indigo-900/30 dark:text-indigo-300 rounded-full"
+                        className="px-3 py-1 text-xs font-medium bg-gradient-to-r from-indigo-50 to-blue-50 text-indigo-600 dark:from-indigo-900/30 dark:to-blue-900/30 dark:text-indigo-300 rounded-full hover:scale-105 transform transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -171,7 +184,7 @@ const Projects = () => {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm font-medium text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+                      className="flex items-center gap-2 text-sm font-medium text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-all duration-300 hover:translate-x-1 transform"
                     >
                       <Github className="w-4 h-4" />
                       View Code
@@ -181,7 +194,7 @@ const Projects = () => {
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center gap-2 text-sm font-medium text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-colors"
+                        className="flex items-center gap-2 text-sm font-medium text-indigo-500 hover:text-indigo-600 dark:text-indigo-400 dark:hover:text-indigo-300 transition-all duration-300 hover:translate-x-1 transform"
                       >
                         <ExternalLink className="w-4 h-4" />
                         Live Demo
@@ -194,6 +207,37 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        .bg-grid-pattern {
+          background-image: radial-gradient(
+            circle at 1px 1px,
+            rgb(0 0 0 / 0.1) 1px,
+            transparent 0
+          );
+          background-size: 40px 40px;
+        }
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+      `}</style>
     </section>
   );
 };
