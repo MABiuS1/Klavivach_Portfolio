@@ -155,7 +155,7 @@ const Hero = () => {
                 {/* ปุ่ม Download + ปุ่ม Close */}
                 <div className="flex items-center space-x-4">
                   <a
-                    href="/KlavivachCV.pdf"
+                    href="/Klavivach_CV.pdf"
                     download
                     className="px-8 py-3 mt-4 sm:mt-0 rounded-full bg-green-500 text-white font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 hover:bg-green-400"
                   >
@@ -173,7 +173,7 @@ const Hero = () => {
               {/* ส่วนแสดง PDF */}
               <div className="h-[80vh] overflow-auto p-4">
                 <iframe
-                  src="/KlavivachCV.pdf"
+                  src="/Klavivach_CV.pdf"
                   title="Resume Preview"
                   className="w-full h-full border border-gray-300 rounded"
                 />

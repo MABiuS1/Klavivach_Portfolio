@@ -42,6 +42,15 @@ const projects = [
     stack: ["Nuxt", "Vue", "Nest", "MongoDB"],
   },
   {
+    src: "/HLLC2025.png",
+    title: "How to Live and Learn on Campus 2025",
+    description:
+      "This project is licensed under the How to Live and Learn on Campus Developer Team only.",
+    link: "https://github.com/HLLC-MFU/HLLC-2025",
+    demoLink: "https://apps.apple.com/th/app/hllc/id6748238190",
+    stack: ["React Native", "Expo", "TypeScript", "Next.js", "WebSocket" , "Go" , "Nest", "MongoDB"],
+  },
+  {
     src: "icon/yakkaw_icon.png",
     title: "Yakkaw Mobile Application",
     description:
